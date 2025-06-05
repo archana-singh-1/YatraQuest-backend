@@ -2,8 +2,7 @@ import exprss from 'express'
 import mongoose from 'mongoose';
 import cors from 'cors'
 import dotenv from 'dotenv'
-import stateRoute from './routes/stateRoute.js';
-
+import stateRoute from './routes/stateRoute.js'
 const app=exprss();
 app.use(cors())
 dotenv.config()
