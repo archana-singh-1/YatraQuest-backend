@@ -1,9 +1,9 @@
-import exprss from 'express'
+import express from 'express'
 import mongoose from 'mongoose';
 import cors from 'cors'
 import dotenv from 'dotenv'
 import stateRoute from './routes/stateRoute.js'
-const app=exprss();
+const app=express();
 app.use(cors())
 dotenv.config()
 
@@ -19,6 +19,7 @@ mongoose.connect(MongoDbUrl,{
 app.get("/",function(req,resp){
     resp.send("Home")
 })
+app.use(express.json());
 app.use('/api',stateRoute)
 app.listen(PORT,()=>{
     console.log(`Server is running on Port ${PORT}`)

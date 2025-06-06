@@ -1,11 +1,16 @@
-import mongoose from "mongoose";
-const placeSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true
-  }
+import mongoose from 'mongoose';
+const tourSchema = new mongoose.Schema({
+  state: String,
+  title: String,
+  description: String,
+  destination: String,
+  city: String,
+  price: Number,
+  image: String
 });
-const Place = mongoose.model('Place', placeSchema);
-export default Place;
+const tourModel=mongoose.model('Tour', tourSchema);
+export default  tourModel;
+
+
+
+
