@@ -1,8 +1,8 @@
-import tourModel from '../model/stateModel.js'; // This is your StateTour model
+import tourModel from '../model/stateModel.js'; 
 
 const addTours = async (req, res) => {
   try {
-    const tours = req.body; // expecting array of { state, places }
+    const tours = req.body; 
 
     if (!Array.isArray(tours) || tours.length === 0) {
       return res.status(400).json({ message: "Please provide an array of state-wise tours" });

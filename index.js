@@ -17,7 +17,8 @@ mongoose.connect(MongoDbUrl)
 .catch((err)=>console.log(err,"err"))
 
 
-app.use('/api',stateRoute)
+// app.use('/api',stateRoute)
+app.use("/api", stateRoute);
 app.use("/api/auth", authRoutes);
 
 app.listen(PORT,()=>{
