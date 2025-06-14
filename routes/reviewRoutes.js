@@ -24,4 +24,29 @@ router.get('/getreview', async (req, res) => {
   }
 });
 
+
+router.get('/allreview', async (req, res) => {
+    try {
+      const page = parseInt(req.query.page) || 1; 
+      const limit = parseInt(req.query.limit) || 6; 
+      const skip = (page - 1) * limit;
+  
+      const total = await Review.countDocuments(); 
+      const reviews = await Review.find()
+        .sort({ date: -1 })
+        .skip(skip)
+        .limit(limit);
+  
+      res.json({
+        total,
+        page,
+        totalPages: Math.ceil(total / limit),
+        reviews,
+      });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+  
+
 export default router;
