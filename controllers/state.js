@@ -17,8 +17,6 @@ const addTours = async (req, res) => {
         duplicates: existingStates.map(s => s.state)
       });
     }
-
-    // Insert the full state-wise tour documents
     const savedTours = await tourModel.insertMany(tours);
     res.status(201).json({
       message: "State tours added successfully",
