@@ -5,5 +5,6 @@ const countryTourSchema = new mongoose.Schema({
     required: true
   },
 })
+
 const CountryTour = mongoose.model('CountryTour', countryTourSchema);
 export default CountryTour;
