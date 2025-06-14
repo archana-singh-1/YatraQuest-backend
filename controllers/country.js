@@ -2,7 +2,7 @@ import CountryTour from "../model/countryModel.js";
 const addCountry = async (req, res) => {
   try {
     const tours = req.body;
-    const existingCountry = await CountryTour.find();
+    const existingCountry = await CountryTour.find({country:country});
     if (existingCountry.length > 0) {
       return res.status(400).json({ message: "Country already exists"});
     }
