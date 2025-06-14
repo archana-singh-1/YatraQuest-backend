@@ -4,7 +4,7 @@ import Review from '../model/reviewModel.js';
 const router = express.Router();
 
 
-router.post('/', async (req, res) => {
+router.post('/postreview', async (req, res) => {
   try {
     const review = new Review(req.body);
     const saved = await review.save();
@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
 });
 
 
-router.get('/', async (req, res) => {
+router.get('/getreview', async (req, res) => {
   try {
     const reviews = await Review.find().sort({ date: -1 });
     res.json(reviews);
