@@ -1,7 +1,6 @@
 import CountryTour from "../model/countryModel.js";
 const addCountry = async (req, res) => {
   try {
-    // const tours = req.body;
      const { country } = req.body;
     const existingCountry = await CountryTour.find({country:country});
     if (existingCountry.length > 0) {
