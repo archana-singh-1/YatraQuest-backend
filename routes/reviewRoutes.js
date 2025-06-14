@@ -24,5 +24,4 @@ router.get('/getreview', async (req, res) => {
   }
 });
 
-
 export default router;
