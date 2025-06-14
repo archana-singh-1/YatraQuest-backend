@@ -4,6 +4,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import stateRoute from './routes/stateRoute.js'
 import authRoutes from "./routes/auth.js";
+import reviewRoutes from './routes/reviewRoutes.js';
 const app=express();
 app.use(express.json());
 app.use(cors())
@@ -17,9 +18,10 @@ mongoose.connect(MongoDbUrl)
 .catch((err)=>console.log(err,"err"))
 
 
-// app.use('/api',stateRoute)
+
 app.use("/api", stateRoute);
 app.use("/api/auth", authRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 app.listen(PORT,()=>{
     console.log(`Server is running on Port ${PORT}`)
