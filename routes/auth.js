@@ -5,7 +5,7 @@ import User from "../model/userSchema.js";
 
 const router = express.Router();
 
-// Signup
+
 router.post("/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -20,7 +20,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// Login
+
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -37,16 +37,66 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Forgot Password (Just email check here, update password is separate)
+
+// router.post("/forgot-password", async (req, res) => {
+//   try {
+//     const { email } = req.body;
+//     const user = await User.findOne({ email });
+//     if (!user) return res.status(404).json({ msg: "User not found" });
+//     res.json({ msg: "Reset link (dummy) sent to email" });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+
+import nodemailer from 'nodemailer';
+
 router.post("/forgot-password", async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ msg: "User not found" });
-    res.json({ msg: "Reset link (dummy) sent to email" });
+
+    // Create transporter
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'archana21@gmail.com',
+        pass: 'dhiraj@12', // Use App Password if 2FA enabled
+      },
+    });
+
+    // Send email
+    await transporter.sendMail({
+      from: 'archana21@gmail.com',
+      to: email,
+      subject: 'Password Reset Request',
+      text: `Hi ${user.name || 'user'},\n\nClick the link below to reset your password:\n\nhttp://your-frontend-url/reset-password?email=${email}\n\nThanks!`,
+    });
+
+    res.json({ msg: "Reset link sent to your email!" });
+
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(err);
+    res.status(500).json({ error: "Email sending failed. Please try again." });
   }
+
+  router.post("/reset-password", async (req, res) => {
+    try {
+      const { email, newPassword } = req.body;
+      const user = await User.findOne({ email });
+      if (!user) return res.status(404).json({ msg: "User not found" });
+  
+      user.password = newPassword; // Make sure you hash it in production!
+      await user.save();
+  
+      res.json({ msg: "Password reset successfully!" });
+    } catch (err) {
+      res.status(500).json({ error: "Failed to reset password." });
+    }
+  });
+  
 });
+
 
 export default router;
