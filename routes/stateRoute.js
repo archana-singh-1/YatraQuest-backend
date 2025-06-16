@@ -4,11 +4,7 @@ import getTours from '../controllers/getState.js';
 import { contactForm } from '../controllers/contactData.js';
 
 const router = express.Router();
-
 router.post("/addState", State);
-
 router.get("/getState", getTours);  
-
 router.post("/contact",contactForm)
-
 export default router;
