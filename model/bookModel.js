@@ -35,7 +35,22 @@ const bookSchema=new mongoose.Schema({
     message:{
         type:String,
         required:true
+    },
+    tourTitle: { type: String, required: true },
+tourImage: { type: String, required: true },
+tourRoute: { type: String, required: true },
+tourState: { type: String, required: true },
+tourPlaces: {
+  type: [
+    {
+      title: { type: String, required: true },
+      description: { type: String, required: true },
+      destination: { type: String, required: true }
     }
+  ],
+  required: true
+}
+
 })
 const bookModel = mongoose.model("bookForm", bookSchema);
 export default bookModel;

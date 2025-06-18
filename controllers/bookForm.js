@@ -2,7 +2,7 @@ import bookModel from "../model/bookModel.js";
 
 export const bookForm = async (req, res) => {
   try {
-    const { name, email, phone, adults, childrens, country, arrival, departure, message } = req.body;
+    const { name, email, phone, adults, childrens, country, arrival, departure, message, tourState, tourImage, tourTitle, tourPlaces, tourRoute } = req.body;
 
     // Validate fields
     if (!name || !email || !phone || !adults || !country || !arrival || !departure) {
@@ -19,9 +19,13 @@ export const bookForm = async (req, res) => {
       country,
       arrival,
       departure,
-      message
+      message,
+      tourTitle,
+      tourRoute,
+      tourState,
+      tourImage,
+      tourPlaces
     });
-
     // Save to database
     await newBooking.save();
 
