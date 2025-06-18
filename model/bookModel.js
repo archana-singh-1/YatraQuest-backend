@@ -16,7 +16,7 @@ const bookSchema=new mongoose.Schema({
         type:Number,
         required:true
     },
-    childrens:{
+    children:{
         type:Number,
         required:true
     },
@@ -28,11 +28,11 @@ const bookSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    departure:{
+    departureDate:{
         type:String,
         required:true
     },
-    message:{
+    comment:{
         type:String,
         required:true
     },
@@ -49,15 +49,18 @@ const bookSchema=new mongoose.Schema({
         required: true 
     
     },
-tourState: { type: String, required: true },
-tourPlaces: {
-  type: [
-    {
-      title: { 
+    tourState: { 
         type: String, 
         required: true 
     },
-      description: { 
+    tourPlaces: {
+    type: [
+    {
+    tourTitle: { 
+        type: String, 
+        required: true 
+    },
+    description: { 
         type: String, 
         required: true 
     },

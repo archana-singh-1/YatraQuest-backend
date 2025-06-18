@@ -2,10 +2,10 @@ import bookModel from "../model/bookModel.js";
 
 export const bookForm = async (req, res) => {
   try {
-    const { name, email, phone, adults, childrens, country, arrival, departure, message, tourState, tourImage, tourTitle, tourPlaces, tourRoute } = req.body;
+    const { name, email, phone, adults, children, country, arrival, departureDate, comment, tourState, tourImage, tourTitle, tourPlaces, tourRoute } = req.body;
 
     // Validate fields
-    if (!name || !email || !phone || !adults || !country || !arrival || !departure || !tourState || !tourImage || !tourTitle || !tourPlaces || tourRoute) {
+    if (!name || !email || !phone || !adults || !country || !arrival ||  !departureDate || !children || !comment || !tourState || !tourImage || !tourTitle || !tourPlaces || tourRoute) {
       return res.status(400).json({ success: false, message: "Please fill all required fields" });
     }
 
@@ -15,11 +15,11 @@ export const bookForm = async (req, res) => {
       email,
       phone,
       adults,
-      childrens,
+      children,
       country,
       arrival,
-      departure,
-      message,
+      departureDate,
+      comment,
       tourTitle,
       tourRoute,
       tourState,
