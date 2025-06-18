@@ -5,7 +5,7 @@ export const bookForm = async (req, res) => {
     const { name, email, phone, adults, childrens, country, arrival, departure, message, tourState, tourImage, tourTitle, tourPlaces, tourRoute } = req.body;
 
     // Validate fields
-    if (!name || !email || !phone || !adults || !country || !arrival || !departure) {
+    if (!name || !email || !phone || !adults || !country || !arrival || !departure || !tourState || !tourImage || !tourTitle || !tourPlaces || tourRoute) {
       return res.status(400).json({ success: false, message: "Please fill all required fields" });
     }
 
