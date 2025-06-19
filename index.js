@@ -11,7 +11,8 @@ app.use(cors({
      origin: [
     "https://yatra-quest-website-development.vercel.app",
     "https://yatra-quest-website.vercel.app",
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "http://localhost:5175"
   ],
   credentials: true
 }));
