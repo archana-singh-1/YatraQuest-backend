@@ -10,7 +10,8 @@ const app=express();
 app.use(cors({
      origin: [
     "https://yatra-quest-website-development.vercel.app",
-    "https://yatra-quest-website.vercel.app"
+    "https://yatra-quest-website.vercel.app",
+    "http://localhost:5173"
   ],
   credentials: true
 }));
