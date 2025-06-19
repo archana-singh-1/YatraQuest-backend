@@ -99,4 +99,33 @@ router.post("/forgot-password", async (req, res) => {
 });
 
 
+
+// routes/verifyUser.js
+router.post('/verify-user', async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // 🔐 Check if email is provided
+    if (!email) {
+      return res.status(400).json({ success: false, message: "Email is required" });
+    }
+
+    // 🔍 Check if user exists in database
+    const user = await User.findOne({ email });
+
+    if (user) {
+      return res.json({ success: true, message: "User found" });
+    } else {
+      return res.json({ success: false, message: "User not found" });
+    }
+
+  } catch (error) {
+    console.error("Error verifying user:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
+
+
+
 export default router;
