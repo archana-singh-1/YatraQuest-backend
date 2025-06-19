@@ -9,6 +9,7 @@ const app=express();
 
 app.use(cors({
   origin: "https://yatra-quest-website-development.vercel.app", // your frontend URL
+   origin: "https://yatra-quest-website.vercel.app/",
   credentials: true
 }));
 
