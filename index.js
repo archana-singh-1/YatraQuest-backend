@@ -16,6 +16,10 @@ app.use(cors({
   ],
   credentials: true
 }));
+// app.use(cors({
+//   origin: "https://yatra-quest-website-development.vercel.app", // your frontend URL
+//   credentials: true
+// }));
 
 app.use(express.json());
 // app.use(cors())
